@@ -16,6 +16,7 @@
     width: 700px;
     height: 300px;
     position: relative;
+    opacity: 0;
 }
 
 .item img {
@@ -72,6 +73,18 @@
     bottom: 0;
 }
 
+.slider-wrapper{
+    display: flex;
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 80%;
+}
+
+.card-active{
+    transition: opacity 7s;
+
+    opacity: 1;
+}
 /*
 EXTRA: in questo esempio gli accordion vengono creati
 usando 2 bordi di un quadratino ruotato di 45 gradi
