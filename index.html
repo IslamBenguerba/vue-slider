@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slider</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
@@ -18,6 +18,8 @@
 
                 <div class="item":class="i ===currentIndex ? 'card-active':'' " v-for="(immage,i) in slides"
                 @click="clickCard(i)"
+                @mouseover="pause()"
+                @mouseout="autoPlay()"
                 >
                     <img :src="slides[i]['image']" :alt="slides[i]['title']" />
                     <div class="text">
@@ -41,8 +43,8 @@
 
             </div>
             <div class="thumbs">
-                <div class="prev" @click="prevBtn(i)"></div>
-                <div class="next" @click="nextBtn(i)"></div>
+                <div class="prev" @click="prevBtn()"></div>
+                <div class="next" @click="nextBtn()"></div>
                 <div class="thumb " :class="i === currentIndex ? 'active':''" v-for="(immage,i) in slides">
                     <img :src="slides[i]['image']" :alt="slides[i]['title']" />
                 </div>

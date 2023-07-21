@@ -29,7 +29,7 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            slides:  [
+            slides: [
                 {
                     image: 'img/01.webp',
                     title: 'Marvel\'s Spiderman Miles Morale',
@@ -52,50 +52,50 @@ createApp({
                     text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
                 }
             ],
-            currentIndex : 0,
-            validator :false
+            currentIndex: 0,
+            interval: null
         }
     },
     methods: {
-        clickCard(index){
+        clickCard(index) {
             this.currentIndex = index
         },
-        prevBtn(currentIndex){
-            if(this.currentIndex > 0){
+        prevBtn() {
+            if (this.currentIndex > 0) {
                 this.currentIndex--;
-            }else{
+            } else {
 
-                this.currentIndex = this.slides.length-1
+                this.currentIndex = this.slides.length - 1
             }
-            
-            
+
+
         },
-        nextBtn(currentIndex){
-            if(this.currentIndex <this.slides.length-1){
+        nextBtn() {
+            if (this.currentIndex < this.slides.length - 1) {
                 this.currentIndex++;
-            }else{
+            } else {
                 this.currentIndex = 0;
             }
-            
+
         },
-        // pause(currentIndex){
-        //     this.currentIndex = currentIndex
-        //     this.validator = true
-        // }
-    },
-    mounted(){
-        let interval =setInterval(()=> {
-            if(this.currentIndex < this.slides.length-1){
-                this.currentIndex++;
-            }else{
-                this.currentIndex = 0
+        autoPlay(){
+            if(this.interval){
+                this.pause()
             }
-        },3000)
-        if (this.validator === true){
-            
-                clearInterval(interval)
-            
+            this.interval = setInterval(() => {
+                if (this.currentIndex < this.slides.length - 1) {
+                    this.currentIndex++;
+                } else {
+                    this.currentIndex = 0
+                }
+            }, 3000)
+        },
+        pause() {
+                clearInterval(this.interval)
         }
+    },
+    mounted() {
+        this.autoPlay()
 
     }
 }).mount('#app')
